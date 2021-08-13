@@ -20,38 +20,24 @@ bool is_palindrome(const std::string& s)
 {
     // You must implement this function.
     // Since we are learning the STL - use a deque to solve the problem.
-    std::string str = s;
-    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
     std::deque<char> pal;
-    std::deque<char> reverse_pal;
-    // for(int i{}; i < str.size(); i++)
-    // {
-    //     if (str[i] < 'A' || str[i] > 'Z' &&
-    //         str[i] < 'a' || str[i] > 'z')
-    //     {  
-    //         // erase function to erase
-    //         // the character
-    //         str.erase(i, 1);
-    //         i--;
-    //     }
-    //     else {
-    //         pal.emplace_back(str.at(i));
-    //         reverse_pal.emplace_front(str.at(i));
-            
-    //     }
-    // }
-
-    for(char c : str)
+    for(char c : s)
         if(std::isalpha(c))
         {
-            pal.emplace_back(c);
-            reverse_pal.emplace_front(c);
+            pal.push_back(std::toupper(c));
              
         }
-    // std::cout << pal << std::endl;
-    // std::cout << reverse_pal;
-
-    return (pal == reverse_pal);
+    
+    char c1{}, c2{};
+    while(pal.size() > 1) {
+        c1 = pal.front();
+        c2 = pal.back();
+        pal.pop_front();
+        pal.pop_back();
+        if(c1 != c2)   
+            return false;
+    }
+    return true;
 }
 
 
