@@ -22,6 +22,7 @@ private:
 
 };
 
+// Updates Index to the next element in the grid based on its neighbors.
 void Solution::updateIndex()
 {
     if(!Neighbors.left)
@@ -39,6 +40,8 @@ void Solution::updateIndex()
     // cout << "GridIndex : (" <<gridIndex.first << ", " << gridIndex.second << ")" << endl; 
 
 }
+
+// Retrieves its neighbors data and stores them in a struct, which is used to update index.
 void Solution::updateNeighbors(int i, int j)
 {
     Neighbors.right = (paddedGrid[i][j+1]) ? true : false;      
@@ -48,6 +51,7 @@ void Solution::updateNeighbors(int i, int j)
     // cout << Neighbors.left << " " << Neighbors.up << " " << Neighbors.right << " " << Neighbors.down << endl;      
 }
 
+// Helper function to print elements of the padded grid [DEBUGGING]
 ostream& operator<<(ostream& os, const Solution& sol)
 {
     for(int i=0; i<sol.paddedGrid.size(); i++)
@@ -64,6 +68,7 @@ ostream& operator<<(ostream& os, const Solution& sol)
     return os;
 }
 
+// Has the while loop that goes to all elements in the padded grid and pushes the numbers located there to the solution
 vector<int> Solution::spiralOrder(vector<vector<int>>& matrix)
 {
     const int xSize = matrix[0].size();    // Horizontal length of matrix
@@ -80,7 +85,7 @@ vector<int> Solution::spiralOrder(vector<vector<int>>& matrix)
 
     updateNeighbors(gridIndex.first, gridIndex.second);
     paddedGrid[gridIndex.first][gridIndex.second] = false;
-    ++gridIndex.second;
+    updateIndex();
 
     while(Neighbors.up || Neighbors.left || Neighbors.right || Neighbors.down)
     {
@@ -93,6 +98,7 @@ vector<int> Solution::spiralOrder(vector<vector<int>>& matrix)
     return sol;
 }
 
+// Creates the padded grid from the input matrix which will be used to execute the spital-motion
 void Solution::padGrid(int width, int height)
 {
     vector<bool> padRow(width + 2, true);
