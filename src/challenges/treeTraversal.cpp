@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ public:
     void preOrderTraversal(Node *);
     void postOrderTraversal(Node *);
     void inOrderTraversal(Node *);
+    void levelOrderTraversal(Node *);
     ~Tree() {delete rootNode; }
     
 private:
@@ -103,6 +105,26 @@ void Tree::inOrderTraversal(Node *node)
 
     inOrderTraversal(node->right);
 }
+
+void Tree::levelOrderTraversal(Node *node)
+{
+    tempNode = node;
+    queue<Node*> Q;
+    Q.push(tempNode);
+
+    while(!Q.empty())
+    {
+        if(tempNode->left != nullptr)
+            Q.push(tempNode->left);
+        if(tempNode->right != nullptr)
+            Q.push(tempNode->right);
+
+        cout << tempNode->letter << " ";
+        Q.pop();
+        tempNode = Q.front();
+    }
+
+}
 int main(int argc, char const *argv[])
 {
     std::vector<char> letters= {'L', 'C', 'I', 'H', 'T', 'X', 'J', 'R', '\0'};
@@ -112,7 +134,8 @@ int main(int argc, char const *argv[])
 
     // tree.preOrderTraversal(tree.getRoot());
     // tree.postOrderTraversal(tree.getRoot());
-    tree.inOrderTraversal(tree.getRoot());
+    // tree.inOrderTraversal(tree.getRoot());
+    tree.levelOrderTraversal(tree.getRoot());
 
 
     return 0;
