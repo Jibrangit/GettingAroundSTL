@@ -36,7 +36,6 @@ void Tree::createTree() {
     {
         if(letters[index] > tempNode->letter)
         {
-            // cout << letters.at(index) << endl;
             if(tempNode->right == nullptr)
             {
                 tempNode->right = new Node;
@@ -53,7 +52,6 @@ void Tree::createTree() {
 
         if(letters[index] < tempNode->letter)
         {
-            // cout << letters.at(index) << endl;
             if(tempNode->left == nullptr)
             {
                 tempNode->left = new Node;  
@@ -75,7 +73,7 @@ int main(int argc, char const *argv[])
     std::vector<char> letters= {'L', 'C', 'I', 'H', 'T', 'X', 'J', 'R', '\0'};
     Tree tree(letters);
     tree.createTree();
-    cout << tree.getRoot()->right->right->letter << endl;
+    cout << tree.getRoot()->right->right->letter << endl; // Testing the tree
 
 
     return 0;
