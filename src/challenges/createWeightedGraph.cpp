@@ -24,7 +24,7 @@ private:
                                                   // Implemented as set to prevent duplicate vertices getting in. 
 };
 
-Graph::Graph(char c[]) {
+Graph::Graph(char c[]) {                          // When graph is intiialized with char array, insert vertices into the graph using those characters. 
     int i{};
     while(c[i] != '\0')
     {
