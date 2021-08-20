@@ -63,6 +63,7 @@ void Tree::createTree() {
         
     }
 }
+
 int main(int argc, char const *argv[])
 {
     std::vector<char> letters= {'L', 'C', 'I', 'H', 'T', 'X', 'J', 'R', '\0'};
