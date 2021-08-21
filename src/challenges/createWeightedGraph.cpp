@@ -17,8 +17,7 @@ public:
     }
 
     char ID_;
-    std::vector<std::pair<Vertex, int>> neighbors;
-    void insertEdge(char c, int weight);
+    mutable std::map<Vertex, int> neighbors;
 };
 
 class Graph {
@@ -28,8 +27,8 @@ public:
     Graph(char c[]);
     void insertVertex(char c);
     void insertEdge(char ID1, char ID2, int weight);
+    void insertEdges(char ID1[], char ID2[], std::vector<int> weights);
 
-protected:
     std::set<Vertex> vertices_;
 };
 
@@ -46,12 +45,17 @@ void Graph::insertVertex(char c) {
 }
 
 void Graph::insertEdge(char c1, char c2, int w) {
-    // auto it1 = vertices_.find(c1);
-    // auto it2 = vertices_.find(c2);
-    // auto p1 = std::make_pair(*it1, w);
+    auto it1 = vertices_.find(c1);
+    auto it2 = vertices_.find(c2);
+    auto p1 = std::make_pair(*it1, w);
+    auto p2 = std::make_pair(*it2, w);
 
-    // it1->neighbors.pop_back();
+    if(it1 != vertices_.end())
+        (*it1).neighbors.insert(p1);
+    if(it2 != vertices_.end())
+        (*it2).neighbors.insert(p2);
 }
+
 
 std::ostream &operator<<(std::ostream &os, const Vertex &v) {
     os << v.ID_;
@@ -70,6 +74,7 @@ int main(int argc, char const *argv[])
     char letters[] {'A', 'C', 'D', 'E', 'B', '\0'};
     Graph graph(letters);
     std::cout << graph << std::endl;
+    graph.insertEdge('A', 'B', 5);
 
     return 0;
 }
