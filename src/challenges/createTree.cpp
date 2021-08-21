@@ -16,7 +16,10 @@ public:
     }
     void createTree();
     Node* getRoot() {return rootNode;}
-    ~Tree() {delete rootNode; }
+    void postOrderTraversalAndDeletion(Node *node);
+    ~Tree() {
+        postOrderTraversalAndDeletion(rootNode);
+    }
     
 private:
     Node *rootNode;
@@ -24,6 +27,19 @@ private:
     std::vector<char> letters;
 
 };
+
+void Tree::postOrderTraversalAndDeletion(Node *node)
+{
+    if(node == nullptr)
+        return;
+    
+    postOrderTraversalAndDeletion(node->left);
+
+    postOrderTraversalAndDeletion(node->right);
+    
+    // cout << node->letter << " ";
+    delete node;
+}
 
 void Tree::createTree() {
 
@@ -69,7 +85,7 @@ int main(int argc, char const *argv[])
     std::vector<char> letters= {'L', 'C', 'I', 'H', 'T', 'X', 'J', 'R', '\0'};
     Tree tree(letters);
     tree.createTree();
-    cout << tree.getRoot()->right->right->letter << endl; // Testing the tree
+    // cout << tree.getRoot()->right->right->letter << endl; // Testing the tree
 
 
     return 0;

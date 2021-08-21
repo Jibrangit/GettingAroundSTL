@@ -23,15 +23,12 @@ int Solution::trap(vector<int>& height)
 
     left.push(temp);
     right.push(temp);
-    // cout << *(left.top()) << " "; 
+
     while(temp != height.begin())
     {
         temp = max_element(height.begin(), temp);
         left.push(temp);
-        // cout << *(left.top()) << " "; 
     }
-    // cout << endl;
-    // cout << *(right.top()) << " "; 
 
     temp = max_element(height.begin(), height.end());
     
@@ -39,24 +36,17 @@ int Solution::trap(vector<int>& height)
     {
         temp = max_element(temp+1, height.end());
         right.push(temp);
-        // cout << *(right.top()) << " "; 
     }
 
     int sum{};
     
-    /** @ TODO: Now that I have the stacks, just have to add up areas. 
-     * To do this, I must get all elements that come in between the elements that are pointed to by the iterators temp and top()
-     * */
-
     temp = left.top();
     left.pop();
     while(!left.empty())
     {
         
         for(auto i=temp+1; i < left.top(); i++)
-        {
             sum += (*i);
-        }
 
         int height = *temp;
         int width = left.top() - temp - 1;

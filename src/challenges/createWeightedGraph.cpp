@@ -9,6 +9,7 @@ public:
     bool operator==(const Vertex &rhs) const {    // Comparing 2 vertices, to help prevent duplication while creating the graph. 
     return (this->ID == rhs.ID);
     }
+    friend void Graph::insertNeighbors(std::unordered_map <Vertex*, int> neighbors);
 private:
     char ID;
     std::unordered_map <Vertex*, int> neighbors;   // Store pointer to the neighbor and weight of the edge connecting to it 
@@ -18,6 +19,7 @@ private:
 class Graph {
 public:
     Graph(char c[]);
+    void insertNeighbors(std::unordered_map <Vertex*, int> neighbors);
 
 private:
     std::set <Vertex> vertices;                   // Store every unique vertex here, edge information will be stored in the vertices. 
@@ -31,6 +33,11 @@ Graph::Graph(char c[]) {                          // When graph is intiialized w
         vertices.emplace(c[i]);
         ++i;
     }
+}
+
+void Graph::insertNeighbors(std::unordered_map <Vertex*, int> neighbors) {
+
+
 }
 int main(int argc, char const *argv[])
 {
