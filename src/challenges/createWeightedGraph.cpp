@@ -8,6 +8,14 @@ bool operator==(const std::pair<Vertex*, int> &v1, const std::pair<Vertex*, int>
     return (*(v1.first) == *(v2.first));
 }
 
+Graph::~Graph() {
+
+    auto it = vertices_.begin();
+    while(it != vertices_.end()) {
+        delete it->second;
+        std::advance(it, 1);
+    }
+}
 
 Graph::Graph(char c[]) {
     int index{};
@@ -61,6 +69,9 @@ std::ostream &operator<<(std::ostream &os, const Vertex* &v) {
     return os;
 }
 
+    ///////////////////////////////////// D E P T H  F I R S T  T R A V E R S A L ////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Graph::depthFirstTraversal() {
     depthStack.push(vertices_.at('A'));
@@ -71,12 +82,12 @@ void Graph::depthFirstTraversal() {
         auto it = depthStack.top()->neighbors.begin();
         while((it!= (depthStack.top()->neighbors.end())))
         {
-            if(it->first->visited)                          // Didnt put as AND in the while as iterator end() behavior is undefined
+            if(it->first->visited)                          // Didnt put as 'AND' in the 'while' as iterator end() behavior is undefined.
                 std::advance(it, 1);
             else
                 break;
         }
-        if(it == ((depthStack.top()->neighbors).end())) {
+        if(it == ((depthStack.top()->neighbors).end())) {    
             depthStack.pop();
 
         }
@@ -89,6 +100,10 @@ void Graph::depthFirstTraversal() {
     }
 
 }
+
+
+///////////////////////////////////// B R E A D T H  F I R S T  T R A V E R S A L ////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Graph::breadthFirstTraversal() {
     breadthQueue.push(vertices_.at('A'));
@@ -135,10 +150,9 @@ int main(int argc, char const *argv[])
     // graph.viewNeighbors('H');
 
 
-    ///////////////////////////////////// D E P T H  F I R S T  T R A V E R S A L ////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // graph.depthFirstTraversal();
+
     graph.breadthFirstTraversal();
 
 

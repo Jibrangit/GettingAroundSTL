@@ -9,6 +9,7 @@
 #include <stack>
 #include <unordered_map>
 #include <queue>
+#include <forward_list>
 
 class Vertex {
 public:
@@ -28,22 +29,32 @@ public:
     bool visited{false};   
 };
 
+struct Node {
+    Vertex curr_node;
+    int shortest_dist_from_start;
+};
+
 class Graph {
 public:
     friend std::ostream &operator<<(std::ostream &os, const Graph &g);
     friend std::ostream &operator<<(std::ostream &os, const Vertex* &v);
     Graph(); 
     Graph(char c[]);
+    ~Graph();
     void insertVertex(char c);
     void insertEdge(char ID1, char ID2, int weight);
     void insertEdges(char ID1[], char ID2[], std::vector<int> weights);
     void viewNeighbors(char c);
     void depthFirstTraversal();
     void breadthFirstTraversal();
+    void Dijkstra();
     
 
     std::unordered_map<char, Vertex*> vertices_;
     std::stack<Vertex*> depthStack;
     std::queue<Vertex*> breadthQueue;
+    std::forward_list<Node> shortest_path;
+    std::vector<Node> unvisited;
+    
 };
 
