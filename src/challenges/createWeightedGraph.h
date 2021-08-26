@@ -69,6 +69,7 @@ public:
     void updateSetElement(char curr_vertex, int shortest_dist, Vertex* v);
     Node accessSetElement(char c);
     void removeSetElement(char c);
+    void printPath(char c);
     
 
     std::unordered_map<char, Vertex*> vertices_;

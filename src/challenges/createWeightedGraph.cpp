@@ -135,7 +135,7 @@ void Graph::breadthFirstTraversal() {
 ///////////////////////////////////// D I J K S T R A ////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/** @brief : operators needed for sorting and accessing **/
+/** @brief : operators needed for sorting and accessing nodes held in the sets**/
 
 bool operator==(const Node &n1, const Node &n2) {
     return (n1.curr_node->ID_ == n2.curr_node->ID_);
@@ -206,6 +206,19 @@ void Graph::removeSetElement(char c) {
         std::cerr << "Requested element could not be removed!" << std::endl;
 }
 
+void Graph::printPath(char c) {
+    std::cout << "Path to " << c << std::endl;
+    auto n = accessSetElement(c);
+    std::cout << n.curr_node->ID_  << " <== ";
+    std::cout << n.prev_node->ID_  << " <== ";
+    while(n.prev_node->ID_ != 'A') {
+        n = accessSetElement(n.prev_node->ID_);
+        std::cout << n.prev_node->ID_  << " <== ";
+    }
+    std::cout << std::endl;
+    
+}
+
 void Graph::Dijkstra() {
 
     // Adding all nodes to unvisited map, initializing initial distance from start with a very large number.
@@ -221,36 +234,38 @@ void Graph::Dijkstra() {
     Vertex* v = unvisited.begin()->curr_node;
     int dist_from_start{};
 
-while(!unvisited.empty()) {
+    while(!unvisited.empty()) {
 
-    // Calculate distance of neighbors from start vertex (distance of current node from start + distance of neighbor from current node)
-    for(const auto &elem : v->neighbors) {
-        dist_from_start = elem.second + unvisited.begin()->shortest_distance_to_start; 
-        auto currentNeighbor = accessSetElement(elem.first->ID_);
-        // If the calculated distance is less than the shortest distance stored in the node, update that node with the distance and its parent node.
-        if(dist_from_start < currentNeighbor.shortest_distance_to_start)
-            updateSetElement(currentNeighbor.curr_node->ID_, dist_from_start, v); 
+        // Calculate distance of neighbors from start vertex (distance of current node from start + distance of neighbor from current node)
+        for(const auto &elem : v->neighbors) {
+            dist_from_start = elem.second + unvisited.begin()->shortest_distance_to_start; 
+            auto currentNeighbor = accessSetElement(elem.first->ID_);
+            // If the calculated distance is less than the shortest distance stored in the node, update that node with the distance and its parent node.
+            if(dist_from_start < currentNeighbor.shortest_distance_to_start)
+                updateSetElement(currentNeighbor.curr_node->ID_, dist_from_start, v); 
+        }
+
+        // After exploring all neighbors, add vertex to visited list, and remove the node from unvisited set. 
+        v->visited = true;
+        visited_nodes.insert(*(unvisited.begin()));
+        unvisited.erase(*unvisited.begin());
+
+        // Update current_node
+        v = unvisited.begin()->curr_node;
+
+        // std::cout << "[ ";
+        // for(const auto &elem : unvisited)
+        //     std::cout << elem.curr_node->ID_ << " ";
+        // std::cout << "]" <<  std::endl;
+        
     }
 
-    // After exploring all neighbors, add vertex to visited list, and remove the node from unvisited set. 
-    v->visited = true;
-    visited_nodes.insert(*(unvisited.begin()));
-    unvisited.erase(*unvisited.begin());
+    // std::cout << "SHORTEST DISTANCE OF EVERY NODE FROM START : " << std::endl;
+    // for(const auto &elem : visited_nodes)
+    //     std::cout << "[A" << " ==> " << elem.curr_node->ID_ << "] : " << elem.shortest_distance_to_start << std::endl;
 
-    // Update current_node
-    v = unvisited.begin()->curr_node;
 
-    // std::cout << "[ ";
-    // for(const auto &elem : unvisited)
-    //     std::cout << elem.curr_node->ID_ << " ";
-    // std::cout << "]" <<  std::endl;
-}
-
-std::cout << "SHORTEST DISTANCE OF EVERY NODE FROM START : " << std::endl;
-for(const auto &elem : visited_nodes) 
-    std::cout << "[A" << " ==> " << elem.curr_node->ID_ << "] : " << elem.shortest_distance_to_start << std::endl;
-    
-
+    printPath('E');
 }
 
 
