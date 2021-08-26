@@ -40,7 +40,6 @@ bool is_palindrome(const std::string& s)
     return true;
 }
 
-
 int main()
 {
     std::vector<std::string> test_strings{ "a", "aa", "aba", "abba", "abbcbba", "ab", "abc", "radar", "bob", "ana",

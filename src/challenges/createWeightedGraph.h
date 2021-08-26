@@ -30,14 +30,32 @@ public:
 };
 
 struct Node {
-    Vertex curr_node;
-    int shortest_dist_from_start;
+    Node(Vertex *v) {
+        curr_node = v;
+    }
+    Node(Vertex *v, int dist) {
+        curr_node = v;
+        shortest_distance_to_start = dist;
+    }
+    bool operator==(const Node &rhs) {
+        return (this->curr_node->ID_ == rhs.curr_node->ID_);
+    }
+    bool operator==(char c) {
+        return (this->curr_node->ID_ == c);
+    }
+    Vertex *curr_node;
+    Vertex *prev_node;
+    int shortest_distance_to_start;
 };
 
 class Graph {
 public:
     friend std::ostream &operator<<(std::ostream &os, const Graph &g);
     friend std::ostream &operator<<(std::ostream &os, const Vertex* &v);
+    friend bool operator==(const std::pair<Node, int> &v1, const std::pair<Node, int> &v2);
+    friend bool operator<(const std::pair<Node, int> &v1, const std::pair<Node, int> &v2);
+    friend bool operator==(const Node &n1, const Node &n2);
+    friend bool operator<(const Node &n1, const Node &n2);
     Graph(); 
     Graph(char c[]);
     ~Graph();
@@ -48,13 +66,15 @@ public:
     void depthFirstTraversal();
     void breadthFirstTraversal();
     void Dijkstra();
+    void updateSetElement(char curr_vertex, int shortest_dist, Vertex* v);
+    Node accessSetElement(char c);
+    void removeSetElement(char c);
     
 
     std::unordered_map<char, Vertex*> vertices_;
     std::stack<Vertex*> depthStack;
     std::queue<Vertex*> breadthQueue;
-    std::forward_list<Node> shortest_path;
-    std::vector<Node> unvisited;
-    
+    std::set<Node> visited_nodes;
+    std::set<Node> unvisited;
 };
 

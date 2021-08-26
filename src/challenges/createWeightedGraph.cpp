@@ -130,6 +130,128 @@ void Graph::breadthFirstTraversal() {
             std::cout << breadthQueue.front()->ID_ << " ==> ";
     }
 }
+
+
+///////////////////////////////////// D I J K S T R A ////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/** @brief : operators needed for sorting and accessing **/
+
+bool operator==(const Node &n1, const Node &n2) {
+    return (n1.curr_node->ID_ == n2.curr_node->ID_);
+}
+
+bool operator<(const Node &n1, const Node &n2) {
+    if(n1.shortest_distance_to_start == n2.shortest_distance_to_start)
+        return (n1.curr_node->ID_ < n2.curr_node->ID_);
+    else
+        return (n1.shortest_distance_to_start < n2.shortest_distance_to_start);
+}
+
+void Graph::updateSetElement(char c, int d, Vertex* v=nullptr) {
+    auto it = unvisited.begin();
+    while(it != unvisited.end()) {
+        if(it->curr_node->ID_ == c) {
+            auto p = *it;
+            p.shortest_distance_to_start = d;
+
+            if(v != nullptr)
+                p.prev_node = v;
+
+            unvisited.erase(*it);
+            unvisited.emplace(p);
+
+            
+            break;
+        }
+        std::advance(it, 1);
+    }
+    if(it == unvisited.end()) 
+        std::cerr << "No vertex found with given character! " << std::endl;
+}
+//=============================================================================================================//
+
+Node Graph::accessSetElement(char c) {
+    auto it = unvisited.begin();
+    while(it != unvisited.end()) {
+        if(it->curr_node->ID_ == c) {
+            return *it;
+        }
+        std::advance(it, 1);
+    }
+    if(it == unvisited.end()) {
+        auto it2 = visited_nodes.begin();
+        while(it2 != visited_nodes.end()) {
+        if(it2->curr_node->ID_ == c) {
+            return *it2;
+        }
+        std::advance(it2, 1);
+    }
+    if(it2 == visited_nodes.end())
+        std::cerr << "Requested Node could not be found! " << std::endl;
+    }
+}
+
+void Graph::removeSetElement(char c) {
+
+    auto it = unvisited.begin();
+    while(it != unvisited.end()) {
+        if(it->curr_node->ID_ == c) {
+            unvisited.erase(*it);
+            break;
+        }
+        std::advance(it, 1);
+    }
+    if(it == unvisited.end())
+        std::cerr << "Requested element could not be removed!" << std::endl;
+}
+
+void Graph::Dijkstra() {
+
+    // Adding all nodes to unvisited map, initializing initial distance from start with a very large number.
+    auto it = vertices_.begin();
+    while(it != vertices_.end()) {
+        unvisited.emplace(it->second, 100000);
+        std::advance(it, 1);
+    }
+
+    // Update 'A' which is the start node to have 0 distance and prev_vertex equal to itself.
+    updateSetElement('A', 0, vertices_.at('A'));             
+
+    Vertex* v = unvisited.begin()->curr_node;
+    int dist_from_start{};
+
+while(!unvisited.empty()) {
+
+    // Calculate distance of neighbors from start vertex (distance of current node from start + distance of neighbor from current node)
+    for(const auto &elem : v->neighbors) {
+        dist_from_start = elem.second + unvisited.begin()->shortest_distance_to_start; 
+        auto currentNeighbor = accessSetElement(elem.first->ID_);
+        // If the calculated distance is less than the shortest distance stored in the node, update that node with the distance and its parent node.
+        if(dist_from_start < currentNeighbor.shortest_distance_to_start)
+            updateSetElement(currentNeighbor.curr_node->ID_, dist_from_start, v); 
+    }
+
+    // After exploring all neighbors, add vertex to visited list, and remove the node from unvisited set. 
+    v->visited = true;
+    visited_nodes.insert(*(unvisited.begin()));
+    unvisited.erase(*unvisited.begin());
+
+    // Update current_node
+    v = unvisited.begin()->curr_node;
+
+    // std::cout << "[ ";
+    // for(const auto &elem : unvisited)
+    //     std::cout << elem.curr_node->ID_ << " ";
+    // std::cout << "]" <<  std::endl;
+}
+
+std::cout << "SHORTEST DISTANCE OF EVERY NODE FROM START : " << std::endl;
+for(const auto &elem : visited_nodes) 
+    std::cout << "[A" << " ==> " << elem.curr_node->ID_ << "] : " << elem.shortest_distance_to_start << std::endl;
+    
+
+}
 int main(int argc, char const *argv[])
 {
     char letters[] {'A', 'C', 'D', 'E', 'B', 'F', 'I', 'H', 'G', '\0'};
@@ -149,13 +271,11 @@ int main(int argc, char const *argv[])
 
     // graph.viewNeighbors('H');
 
-
-
     // graph.depthFirstTraversal();
 
-    graph.breadthFirstTraversal();
+    // graph.breadthFirstTraversal();
 
-
+    graph.Dijkstra();
 
     return 0;
 }
