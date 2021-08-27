@@ -46,6 +46,7 @@ struct Node {
     Vertex *curr_node;
     Vertex *prev_node;
     int shortest_distance_to_start;
+    int heuristic{};
 };
 
 class Graph {
@@ -63,13 +64,18 @@ public:
     void insertEdge(char ID1, char ID2, int weight);
     void insertEdges(char ID1[], char ID2[], std::vector<int> weights);
     void viewNeighbors(char c);
+
     void depthFirstTraversal();
     void breadthFirstTraversal();
+
     void Dijkstra();
     void updateSetElement(char curr_vertex, int shortest_dist, Vertex* v);
     Node accessSetElement(char c);
     void removeSetElement(char c);
     void printPath(char c);
+
+    void aStar();
+
     
 
     std::unordered_map<char, Vertex*> vertices_;
