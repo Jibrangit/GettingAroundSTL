@@ -148,7 +148,7 @@ bool operator<(const Node &n1, const Node &n2) {
         return (n1.shortest_distance_to_start < n2.shortest_distance_to_start);
 }
 
-void Graph::updateSetElement(char c, int d, Vertex* v=nullptr) {
+void Graph::updateSetElement(char c, int d, Vertex* v=nullptr, int h=-1) {
     auto it = unvisited.begin();
     while(it != unvisited.end()) {
         if(it->curr_node->ID_ == c) {
@@ -157,6 +157,9 @@ void Graph::updateSetElement(char c, int d, Vertex* v=nullptr) {
 
             if(v != nullptr)
                 p.prev_node = v;
+
+            if(h > 0)
+                p.heuristic = h;
 
             unvisited.erase(*it);
             unvisited.emplace(p);
@@ -264,7 +267,6 @@ void Graph::Dijkstra() {
     // for(const auto &elem : visited_nodes)
     //     std::cout << "[A" << " ==> " << elem.curr_node->ID_ << "] : " << elem.shortest_distance_to_start << std::endl;
 
-
     printPath('E');
 }
 
@@ -273,6 +275,50 @@ void Graph::Dijkstra() {
 ///////////////////////////////////// A  S T A R ////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Graph::aStar() {
-    
+/** @brief : In this case the cost at every node is the shortest distance to start until that node, same as Dijkstra, but additionally the heuristic, which here is randomly assigned.
+ * In a grid that heuristic would be the distance to that end node. Here, its just an estimate.
+ * */
+
+void Graph::aStar(int heuristics[]) {
+    // Adding all nodes to unvisited map, initializing initial distance from start with a very large number.
+    auto it = vertices_.begin();
+    int idx{};
+    while(it != vertices_.end()) {
+        unvisited.emplace(it->second, 100000, heuristics[idx]);
+        std::advance(it, 1);
+        ++idx;
+    }
+
+    // Update 'A' which is the start node to have 0 distance and prev_vertex equal to itself.
+    updateSetElement('A', 0, vertices_.at('A'));             
+
+    Vertex* v = unvisited.begin()->curr_node;
+    int dist_from_start{};
+
+    while(!unvisited.empty()) {
+
+        // Calculate distance of neighbors from start vertex (distance of current node from start + distance of neighbor from current node)
+        for(const auto &elem : v->neighbors) {
+            dist_from_start = elem.second + unvisited.begin()->shortest_distance_to_start; 
+            auto currentNeighbor = accessSetElement(elem.first->ID_);
+            // If the calculated distance is less than the shortest distance stored in the node, update that node with the distance and its parent node.
+            if(dist_from_start < currentNeighbor.shortest_distance_to_start)
+                updateSetElement(currentNeighbor.curr_node->ID_, dist_from_start, v); 
+        }
+
+        // After exploring all neighbors, add vertex to visited list, and remove the node from unvisited set. 
+        v->visited = true;
+        visited_nodes.insert(*(unvisited.begin()));
+        unvisited.erase(*unvisited.begin());
+
+        // Update current_node
+        v = unvisited.begin()->curr_node;
+
+        // std::cout << "[ ";
+        // for(const auto &elem : unvisited)
+        //     std::cout << elem.curr_node->ID_ << " ";
+        // std::cout << "]" <<  std::endl;
+        
+    }
+
 }

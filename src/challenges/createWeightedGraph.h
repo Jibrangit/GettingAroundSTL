@@ -37,6 +37,13 @@ struct Node {
         curr_node = v;
         shortest_distance_to_start = dist;
     }
+
+    Node(Vertex *v, int dist_to_start, int h) {
+        curr_node = v;
+        shortest_distance_to_start = dist_to_start;
+        heuristic = h;
+    }
+    
     bool operator==(const Node &rhs) {
         return (this->curr_node->ID_ == rhs.curr_node->ID_);
     }
@@ -69,14 +76,12 @@ public:
     void breadthFirstTraversal();
 
     void Dijkstra();
-    void updateSetElement(char curr_vertex, int shortest_dist, Vertex* v);
+    void updateSetElement(char curr_vertex, int shortest_dist, Vertex* v, int heuristic);
     Node accessSetElement(char c);
     void removeSetElement(char c);
     void printPath(char c);
 
-    void aStar();
-
-    
+    void aStar(int heuristics[]);
 
     std::unordered_map<char, Vertex*> vertices_;
     std::stack<Vertex*> depthStack;

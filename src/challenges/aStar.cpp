@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
 {
     char letters[] {'A', 'C', 'D', 'E', 'B', 'F', 'I', 'H', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', '\0'};
     Graph graph(letters);
-    // std::cout << graph << std::endl;
+
     graph.insertEdge('A', 'B', 5);
     graph.insertEdge('A', 'C', 5);
     graph.insertEdge('B', 'C', 4);
@@ -30,9 +30,11 @@ int main(int argc, char const *argv[])
     graph.insertEdge('M', 'O', 5);
     graph.insertEdge('N', 'P', 7);
 
+    int heuristics[] = {16, 17, 13, 16, 16, 20, 17, 11, 10, 8, 4, 7, 10, 7, 5, 0}; // Add for every node, estimated distance to end node. 
     
-
-    std::cout << graph << std::endl;
+    // graph.viewNeighbors('K');
+    // std::cout << graph << std::endl;
+    graph.aStar(heuristics);
 
 
     return 0;
