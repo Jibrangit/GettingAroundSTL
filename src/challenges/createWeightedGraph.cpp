@@ -267,7 +267,7 @@ void Graph::Dijkstra() {
     // for(const auto &elem : visited_nodes)
     //     std::cout << "[A" << " ==> " << elem.curr_node->ID_ << "] : " << elem.shortest_distance_to_start << std::endl;
 
-    printPath('E');
+    printPath('H');
 }
 
 

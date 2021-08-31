@@ -7,6 +7,8 @@ project(GettingAroundSTL)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-
 # add the executable
 add_executable(createTree src/challenges/createTree.cpp)
+add_executable(Dijkstra src/challenges/Dijkstra.cpp src/challenges/createWeightedGraph.cpp)
+
+

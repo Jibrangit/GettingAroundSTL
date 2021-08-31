@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /home/jibran/GettingAroundSTL/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/Dijkstra.dir/all
 all: CMakeFiles/createTree.dir/all
 
 .PHONY : all
@@ -63,9 +64,37 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/Dijkstra.dir/clean
 clean: CMakeFiles/createTree.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Dijkstra.dir
+
+# All Build rule for target.
+CMakeFiles/Dijkstra.dir/all:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/depend
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jibran/GettingAroundSTL/build/CMakeFiles --progress-num=1,2,3 "Built target Dijkstra"
+.PHONY : CMakeFiles/Dijkstra.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Dijkstra.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jibran/GettingAroundSTL/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Dijkstra.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jibran/GettingAroundSTL/build/CMakeFiles 0
+.PHONY : CMakeFiles/Dijkstra.dir/rule
+
+# Convenience name for target.
+Dijkstra: CMakeFiles/Dijkstra.dir/rule
+
+.PHONY : Dijkstra
+
+# clean rule for target.
+CMakeFiles/Dijkstra.dir/clean:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/clean
+.PHONY : CMakeFiles/Dijkstra.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/createTree.dir
@@ -74,7 +103,7 @@ clean: CMakeFiles/createTree.dir/clean
 CMakeFiles/createTree.dir/all:
 	$(MAKE) -f CMakeFiles/createTree.dir/build.make CMakeFiles/createTree.dir/depend
 	$(MAKE) -f CMakeFiles/createTree.dir/build.make CMakeFiles/createTree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jibran/GettingAroundSTL/build/CMakeFiles --progress-num=1,2 "Built target createTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jibran/GettingAroundSTL/build/CMakeFiles --progress-num=4,5 "Built target createTree"
 .PHONY : CMakeFiles/createTree.dir/all
 
 # Build rule for subdir invocation for target.

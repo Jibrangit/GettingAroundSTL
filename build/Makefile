@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Dijkstra
+
+# Build rule for target.
+Dijkstra: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Dijkstra
+.PHONY : Dijkstra
+
+# fast build rule for target.
+Dijkstra/fast:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/build
+.PHONY : Dijkstra/fast
+
+#=============================================================================
 # Target rules for targets named createTree
 
 # Build rule for target.
@@ -122,6 +135,33 @@ createTree: cmake_check_build_system
 createTree/fast:
 	$(MAKE) -f CMakeFiles/createTree.dir/build.make CMakeFiles/createTree.dir/build
 .PHONY : createTree/fast
+
+src/challenges/Dijkstra.o: src/challenges/Dijkstra.cpp.o
+
+.PHONY : src/challenges/Dijkstra.o
+
+# target to build an object file
+src/challenges/Dijkstra.cpp.o:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/Dijkstra.cpp.o
+.PHONY : src/challenges/Dijkstra.cpp.o
+
+src/challenges/Dijkstra.i: src/challenges/Dijkstra.cpp.i
+
+.PHONY : src/challenges/Dijkstra.i
+
+# target to preprocess a source file
+src/challenges/Dijkstra.cpp.i:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/Dijkstra.cpp.i
+.PHONY : src/challenges/Dijkstra.cpp.i
+
+src/challenges/Dijkstra.s: src/challenges/Dijkstra.cpp.s
+
+.PHONY : src/challenges/Dijkstra.s
+
+# target to generate assembly for a file
+src/challenges/Dijkstra.cpp.s:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/Dijkstra.cpp.s
+.PHONY : src/challenges/Dijkstra.cpp.s
 
 src/challenges/createTree.o: src/challenges/createTree.cpp.o
 
@@ -150,6 +190,33 @@ src/challenges/createTree.cpp.s:
 	$(MAKE) -f CMakeFiles/createTree.dir/build.make CMakeFiles/createTree.dir/src/challenges/createTree.cpp.s
 .PHONY : src/challenges/createTree.cpp.s
 
+src/challenges/createWeightedGraph.o: src/challenges/createWeightedGraph.cpp.o
+
+.PHONY : src/challenges/createWeightedGraph.o
+
+# target to build an object file
+src/challenges/createWeightedGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.o
+.PHONY : src/challenges/createWeightedGraph.cpp.o
+
+src/challenges/createWeightedGraph.i: src/challenges/createWeightedGraph.cpp.i
+
+.PHONY : src/challenges/createWeightedGraph.i
+
+# target to preprocess a source file
+src/challenges/createWeightedGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.i
+.PHONY : src/challenges/createWeightedGraph.cpp.i
+
+src/challenges/createWeightedGraph.s: src/challenges/createWeightedGraph.cpp.s
+
+.PHONY : src/challenges/createWeightedGraph.s
+
+# target to generate assembly for a file
+src/challenges/createWeightedGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.s
+.PHONY : src/challenges/createWeightedGraph.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,10 +225,17 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... Dijkstra"
 	@echo "... createTree"
+	@echo "... src/challenges/Dijkstra.o"
+	@echo "... src/challenges/Dijkstra.i"
+	@echo "... src/challenges/Dijkstra.s"
 	@echo "... src/challenges/createTree.o"
 	@echo "... src/challenges/createTree.i"
 	@echo "... src/challenges/createTree.s"
+	@echo "... src/challenges/createWeightedGraph.o"
+	@echo "... src/challenges/createWeightedGraph.i"
+	@echo "... src/challenges/createWeightedGraph.s"
 .PHONY : help
 
 
