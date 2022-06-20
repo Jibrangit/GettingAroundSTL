@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/binarySearchSortedArray.dir/src/challenges/binarySearchSortedArray.cpp.o  -o binarySearchSortedArray 

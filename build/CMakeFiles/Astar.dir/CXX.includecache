@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jibran/GettingAroundSTL/src/challenges/createWeightedGraph.cpp
+createWeightedGraph.h
+/home/jibran/GettingAroundSTL/src/challenges/createWeightedGraph.h
+
+/home/jibran/GettingAroundSTL/src/challenges/createWeightedGraph.h
+iostream
+-
+unordered_set
+-
+set
+-
+map
+-
+vector
+-
+algorithm
+-
+stack
+-
+unordered_map
+-
+queue
+-
+forward_list
+-
+

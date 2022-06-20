@@ -287,38 +287,5 @@ void Graph::aStar(int heuristics[]) {
         unvisited.emplace(it->second, 100000, heuristics[idx]);
         std::advance(it, 1);
         ++idx;
+    }      
     }
-
-    // Update 'A' which is the start node to have 0 distance and prev_vertex equal to itself.
-    updateSetElement('A', 0, vertices_.at('A'));             
-
-    Vertex* v = unvisited.begin()->curr_node;
-    int dist_from_start{};
-
-    while(!unvisited.empty()) {
-
-        // Calculate distance of neighbors from start vertex (distance of current node from start + distance of neighbor from current node)
-        for(const auto &elem : v->neighbors) {
-            dist_from_start = elem.second + unvisited.begin()->shortest_distance_to_start; 
-            auto currentNeighbor = accessSetElement(elem.first->ID_);
-            // If the calculated distance is less than the shortest distance stored in the node, update that node with the distance and its parent node.
-            if(dist_from_start < currentNeighbor.shortest_distance_to_start)
-                updateSetElement(currentNeighbor.curr_node->ID_, dist_from_start, v); 
-        }
-
-        // After exploring all neighbors, add vertex to visited list, and remove the node from unvisited set. 
-        v->visited = true;
-        visited_nodes.insert(*(unvisited.begin()));
-        unvisited.erase(*unvisited.begin());
-
-        // Update current_node
-        v = unvisited.begin()->curr_node;
-
-        // std::cout << "[ ";
-        // for(const auto &elem : unvisited)
-        //     std::cout << elem.curr_node->ID_ << " ";
-        // std::cout << "]" <<  std::endl;
-        
-    }
-
-}

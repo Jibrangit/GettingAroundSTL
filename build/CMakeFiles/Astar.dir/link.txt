@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Astar.dir/src/challenges/aStar.cpp.o CMakeFiles/Astar.dir/src/challenges/createWeightedGraph.cpp.o  -o Astar 

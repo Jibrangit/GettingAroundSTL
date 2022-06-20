@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jibran/GettingAroundSTL/src/challenges/binarySearchSortedArray.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+

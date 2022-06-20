@@ -1,4 +1,6 @@
 /home/jibran/GettingAroundSTL/build/CMakeFiles/rebuild_cache.dir
 /home/jibran/GettingAroundSTL/build/CMakeFiles/edit_cache.dir
+/home/jibran/GettingAroundSTL/build/CMakeFiles/binarySearchSortedArray.dir
+/home/jibran/GettingAroundSTL/build/CMakeFiles/Astar.dir
 /home/jibran/GettingAroundSTL/build/CMakeFiles/Dijkstra.dir
 /home/jibran/GettingAroundSTL/build/CMakeFiles/createTree.dir

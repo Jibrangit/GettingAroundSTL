@@ -45,6 +45,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/binarySearchSortedArray.dir/DependInfo.cmake"
+  "CMakeFiles/Astar.dir/DependInfo.cmake"
   "CMakeFiles/Dijkstra.dir/DependInfo.cmake"
   "CMakeFiles/createTree.dir/DependInfo.cmake"
   )

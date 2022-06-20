@@ -10,5 +10,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # add the executable
 add_executable(createTree src/challenges/createTree.cpp)
 add_executable(Dijkstra src/challenges/Dijkstra.cpp src/challenges/createWeightedGraph.cpp)
-
-
+add_executable(Astar src/challenges/aStar.cpp src/challenges/createWeightedGraph.cpp)
+add_executable(binarySearchSortedArray src/challenges/binarySearchSortedArray.cpp)

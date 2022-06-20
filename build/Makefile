@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named binarySearchSortedArray
+
+# Build rule for target.
+binarySearchSortedArray: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 binarySearchSortedArray
+.PHONY : binarySearchSortedArray
+
+# fast build rule for target.
+binarySearchSortedArray/fast:
+	$(MAKE) -f CMakeFiles/binarySearchSortedArray.dir/build.make CMakeFiles/binarySearchSortedArray.dir/build
+.PHONY : binarySearchSortedArray/fast
+
+#=============================================================================
+# Target rules for targets named Astar
+
+# Build rule for target.
+Astar: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Astar
+.PHONY : Astar
+
+# fast build rule for target.
+Astar/fast:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/build
+.PHONY : Astar/fast
+
+#=============================================================================
 # Target rules for targets named Dijkstra
 
 # Build rule for target.
@@ -163,6 +189,60 @@ src/challenges/Dijkstra.cpp.s:
 	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/Dijkstra.cpp.s
 .PHONY : src/challenges/Dijkstra.cpp.s
 
+src/challenges/aStar.o: src/challenges/aStar.cpp.o
+
+.PHONY : src/challenges/aStar.o
+
+# target to build an object file
+src/challenges/aStar.cpp.o:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/aStar.cpp.o
+.PHONY : src/challenges/aStar.cpp.o
+
+src/challenges/aStar.i: src/challenges/aStar.cpp.i
+
+.PHONY : src/challenges/aStar.i
+
+# target to preprocess a source file
+src/challenges/aStar.cpp.i:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/aStar.cpp.i
+.PHONY : src/challenges/aStar.cpp.i
+
+src/challenges/aStar.s: src/challenges/aStar.cpp.s
+
+.PHONY : src/challenges/aStar.s
+
+# target to generate assembly for a file
+src/challenges/aStar.cpp.s:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/aStar.cpp.s
+.PHONY : src/challenges/aStar.cpp.s
+
+src/challenges/binarySearchSortedArray.o: src/challenges/binarySearchSortedArray.cpp.o
+
+.PHONY : src/challenges/binarySearchSortedArray.o
+
+# target to build an object file
+src/challenges/binarySearchSortedArray.cpp.o:
+	$(MAKE) -f CMakeFiles/binarySearchSortedArray.dir/build.make CMakeFiles/binarySearchSortedArray.dir/src/challenges/binarySearchSortedArray.cpp.o
+.PHONY : src/challenges/binarySearchSortedArray.cpp.o
+
+src/challenges/binarySearchSortedArray.i: src/challenges/binarySearchSortedArray.cpp.i
+
+.PHONY : src/challenges/binarySearchSortedArray.i
+
+# target to preprocess a source file
+src/challenges/binarySearchSortedArray.cpp.i:
+	$(MAKE) -f CMakeFiles/binarySearchSortedArray.dir/build.make CMakeFiles/binarySearchSortedArray.dir/src/challenges/binarySearchSortedArray.cpp.i
+.PHONY : src/challenges/binarySearchSortedArray.cpp.i
+
+src/challenges/binarySearchSortedArray.s: src/challenges/binarySearchSortedArray.cpp.s
+
+.PHONY : src/challenges/binarySearchSortedArray.s
+
+# target to generate assembly for a file
+src/challenges/binarySearchSortedArray.cpp.s:
+	$(MAKE) -f CMakeFiles/binarySearchSortedArray.dir/build.make CMakeFiles/binarySearchSortedArray.dir/src/challenges/binarySearchSortedArray.cpp.s
+.PHONY : src/challenges/binarySearchSortedArray.cpp.s
+
 src/challenges/createTree.o: src/challenges/createTree.cpp.o
 
 .PHONY : src/challenges/createTree.o
@@ -196,6 +276,7 @@ src/challenges/createWeightedGraph.o: src/challenges/createWeightedGraph.cpp.o
 
 # target to build an object file
 src/challenges/createWeightedGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/createWeightedGraph.cpp.o
 	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.o
 .PHONY : src/challenges/createWeightedGraph.cpp.o
 
@@ -205,6 +286,7 @@ src/challenges/createWeightedGraph.i: src/challenges/createWeightedGraph.cpp.i
 
 # target to preprocess a source file
 src/challenges/createWeightedGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/createWeightedGraph.cpp.i
 	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.i
 .PHONY : src/challenges/createWeightedGraph.cpp.i
 
@@ -214,6 +296,7 @@ src/challenges/createWeightedGraph.s: src/challenges/createWeightedGraph.cpp.s
 
 # target to generate assembly for a file
 src/challenges/createWeightedGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/Astar.dir/build.make CMakeFiles/Astar.dir/src/challenges/createWeightedGraph.cpp.s
 	$(MAKE) -f CMakeFiles/Dijkstra.dir/build.make CMakeFiles/Dijkstra.dir/src/challenges/createWeightedGraph.cpp.s
 .PHONY : src/challenges/createWeightedGraph.cpp.s
 
@@ -225,11 +308,19 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... binarySearchSortedArray"
+	@echo "... Astar"
 	@echo "... Dijkstra"
 	@echo "... createTree"
 	@echo "... src/challenges/Dijkstra.o"
 	@echo "... src/challenges/Dijkstra.i"
 	@echo "... src/challenges/Dijkstra.s"
+	@echo "... src/challenges/aStar.o"
+	@echo "... src/challenges/aStar.i"
+	@echo "... src/challenges/aStar.s"
+	@echo "... src/challenges/binarySearchSortedArray.o"
+	@echo "... src/challenges/binarySearchSortedArray.i"
+	@echo "... src/challenges/binarySearchSortedArray.s"
 	@echo "... src/challenges/createTree.o"
 	@echo "... src/challenges/createTree.i"
 	@echo "... src/challenges/createTree.s"
